@@ -204,3 +204,4 @@ These sites are specifically referred to in the rest of the documentation provid
 
 #### Bonus Documentation
 - [Planning and Tracking Your Project](https://docs.github.com/en/issues/planning-and-tracking-with-projects)
+- [Undo changes, commits, pushes, etc.](https://sethrobertson.github.io/GitFixUm/fixup.html)
