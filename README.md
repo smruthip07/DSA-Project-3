@@ -3,46 +3,53 @@ This is the template for Project 3 repositories. It includes all the assignment 
 
 <h2> Table of Contents </h2>
 
-- [Getting Started with the Project](#getting-started-with-the-project)
-	- [Step 1: Create Your Project Repository](#step-1-create-your-project-repository)
-	- [Step 2: Repository Name and Visibility](#step-2-repository-name-and-visibility)
-	- [Step 3: Collaboration and Team Members](#step-3-collaboration-and-team-members)
-	- [Step 4: Development](#step-4-development)
-		- [Issues:](#issues)
-		- [Branches](#branches)
-		- [Commits](#commits)
-			- [Guidelines for good commit messages](#guidelines-for-good-commit-messages)
-		- [Pull Requests](#pull-requests)
-- [README, Markdown, and Report Submission](#readme-markdown-and-report-submission)
-	- [Important Elements](#important-elements)
-	- [Important Note on ToC](#important-note-on-toc)
-- [Additional Resources and Documentation:](#additional-resources-and-documentation)
-	- [General Documentation](#general-documentation)
-	- [Additional Specific Documentation](#additional-specific-documentation)
-		- [Quickstart](#quickstart)
-		- [Repositories](#repositories)
-		- [Branches](#branches-1)
-		- [Issues](#issues-1)
-		- [Bonus Documentation](#bonus-documentation)
+- [Documentation and resources on how to use GitHub for Project 3](#documentation-and-resources-on-how-to-use-github-for-project-3)
+	- [Getting Started with the Project](#getting-started-with-the-project)
+		- [Step 1: Create Your Project Repository](#step-1-create-your-project-repository)
+		- [Step 2: Repository Name and Visibility](#step-2-repository-name-and-visibility)
+		- [Step 3: Collaboration and Team Members](#step-3-collaboration-and-team-members)
+		- [Step 4: Development](#step-4-development)
+			- [Issues:](#issues)
+			- [Branches](#branches)
+			- [Commits](#commits)
+				- [Guidelines for good commit messages](#guidelines-for-good-commit-messages)
+			- [Pull Requests](#pull-requests)
+	- [Markdown and Report](#markdown-and-report)
+	- [Additional Resources and Documentation:](#additional-resources-and-documentation)
+		- [General Documentation](#general-documentation)
+		- [Additional Specific Documentation](#additional-specific-documentation)
+			- [Quickstart](#quickstart)
+			- [Repositories](#repositories)
+			- [Branches](#branches-1)
+			- [Issues](#issues-1)
+			- [Bonus Documentation](#bonus-documentation)
 
 # Documentation and resources on how to use GitHub for Project 3
 ## Getting Started with the Project
 
-This is a group project. As such, you're expected to equally contribute to all parts of the project. To make the collaboration easier for you, we have moved this project entirely to GitHub. However, to fully leverage the features that GitHub offers, you have to be familiar with what they are and how to use them.
+This is a group project. As such, you're expected to equally contribute to all parts of the project. To ensure everyone is contributing, we have moved this project entirely to GitHub and will use GitHub logs to understand your contributions. To fully leverage the features that GitHub offers, you have to be familiar with what they are and how to use them.
 
 The goal of this project is to get you familiar with the creative process of software development for a general purpose use and how to use data structures or algorithms for those applications. To go with the professional development that the project offers in terms of general use application, you will also get more familiar with version control and GitHub platform to facilitate the collaborative work with extensive planning and organization abilities.
 
-This step by step process if linked in this video:
+This step by step process is linked in this video **if you aren't familiar with GitHub**. Here are the instructions on how to Collaborate for Project 3 which are similar to what was covered in the video. You may skip reading these if you have watched the video:
 - [YouTube](https://youtu.be/CaGUAi6jnik) - Doesn't have chapters but has subtitles
 - [Loom](https://www.loom.com/share/5f06c23105cf449a8f526b997cb3768b?sid=e30f822f-11c1-4ce7-8821-008932fd930a) - Has chapters and transcript
+
+Also, the following video has instructions on local development using Git and GitHub:
+- [YouTube]() - Doesn't have chapters but has subtitles
+- [Loom]() - Has chapters and transcript
+
+To illustrate the development process, we've also made a demo video to show how the GitHub flow looks like on an example:
+- [YouTube]() - Doesn't have chapters but has subtitles
+- [Loom]() - Has chapters and transcript
 
 ### Step 1: Create Your Project Repository
 
 This is a template repository. If you want to know more about those, feel free to follow [this link](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository) to the GitHub documenation about templates and how to create them. You've used templates before for projects 1 and 2, and you will use it now, too. 
 
-The first step of your project is to create the project repository that will host your source code and documentation.
+The first step of your project is to make your own repository for your own project that will host your source code and documentation. Only one member of the team needs to create a repo and everyone else copies that repo using git clone. 
 1. Navigate to the main page of the repository.
-2. Above the file list, in line with the repository name, click on the big green buton saying **"Use this template"**
+2. Above the file list, in line with the repository name, click on the big green button saying **"Use this template"**
 3. Select **"Create a new repository"** (This step is important. Do not open in codespace. Make your own repository for your own project.)
 
 ### Step 2: Repository Name and Visibility
@@ -93,7 +100,7 @@ To **delete** a branch, open the tab with all branches and click on the bin (<sv
 
 Commits are a way to update the repository with the changes you made. Each commit has information about who made the change, what changes were made, when the change was made, and a message that describes the changes (and/or if it refers to an [Issue](#issues)).
 
-Commits are very important part of collaboration and should follow an agreed on convention for the team. Each commit also offers a way to organize the changes because it shows a very short concise description of the change made. As such, make sure to commit frequently and that each commit solves only one issue. As with Issues, your commits should be atomic (contains only one change).
+Commits are very important part of collaboration and should follow an agreed on convention for the team. Each commit also offers a way to organize the changes because it shows a very short concise description of the change made. As such, make sure to commit frequently and that each commit solves only one issue. As with Issues, your commits should be atomic (contains only one change, e.g. `Feat: implement user input parsing for calculator to split string into tokens (Issue #1)`).
 
 ##### Guidelines for good commit messages
 1. Keep it **short** (less than 150 characters total)
@@ -127,41 +134,9 @@ Commits are very important part of collaboration and should follow an agreed on 
 
 Once you've made commits and are done working on the feature your branch was for, you should make a pull request. A pull request is meant to allow your teammates to review your changes, give you feedback, and the merge all the functional code into one central location (main branch).
 
-## README, Markdown, and Report Submission
+## Markdown and Report
 
-For this project, you're expected to submit a report that is similar to those you've done for projects 1 and 2, with the proposal submitted in 3a included. To centralize this with your source code and video, you will write your Report in Markdown as a README file. Since you're supposed to create your project repository from this template, edit the existing README.md file, remove all the contents that are currently there, and replace them with your report.
-
-Putting the README.md in your root or docs directory will automatically be recognized by GitHub and will be shown to anyone who visits the repository. For all documents, including README files, commit messages and issues, GitHub uses Markdown for formatting.
-
-### Important Elements
-|Element|Markdown Syntax| Example |
-|-|-|-|
-|Heading| # H1 <br> ## H2 <br> ### H3 <br> etc...| <h1>Heading 1</h1> <h2> Heading 2 </h2>  <h3> Heading 3 </h3>|
-|Bold |	\*\*bold text** | **bold text** |
-|Italic	|\*italicized text\*| *italics* |
-|Blockquote	|> blockquote| <blockquote>blockquote</blockquote>
-|Ordered List|1. First item <br> 2. Second item <br>3. Third item| <ol><li>First item</li><li>Second item</li><li>Third item</li></ol>
-|Unordered List	| - First item <br> - Second item <br> - Third item|<ul><li>First item</li><li>Second item</li><li>Third item</li></ul>
-|Code	|\`code`|`code`|
-|Horizontal Rule	|---| <hr>|
-|Link	|\[title](https://www.example.com)|[title](https://www.example.com)
-|Image	|!\[alt text](image.jpg)|![alt text](images/image.jpg) |
-Table	| \| Syntax \| Description \| <br> \| - \| - \| <br> \| Header \| Title \| <br> \| Paragraph \| Text \| | <table><tr><th>Syntax</th><th>Description</th></tr><tr><td>Header</td> <td>Title</td></tr><tr><td>Paragraph</td><td>Text</td></tr></table> |
-Fenced Code Block	| \```<br>{<br>  "firstName": "John", <br>  "lastName": "Smith", <br>  "age": 25 <br>} <br> \``` | ![code](images/code.png) |
-Footnote	| Here's a sentence with a footnote. [\^1] <br> [\^1]: This is the footnote.| Here's a sentence with a footnote. <sup style="font-size: smaller;">[[1]]()</sup> <br> 1. This is the footnote.
-
-### Important Note on ToC
-
-To include the Table of Contents (for your report), you can use links:
-
-	\[link](www.example.com)
-
-with the bulleted lists:
-
-	- \[Section 1](#section-1)
-
-
-If you have VS Code, it will then automatically add all headings into the table upon saving. If you want to exclude the title and table of contents as headings use the HTML heading syntax (\<h1>Heading 1\</h1>, \<h2>Heading 2\</h2>, \<h3>Heading 3\</h3>, ...)
+README files are formatted using Markdown in GitHub. If you're not familiar with Markdown, or if you need some syntax information, you can find syntax and tips in [Markdown resource file](resources/MARKDOWN.md). Additionally, for your convenience, we have provided a template to use for your [report](resources/REPORT.md) which is written and organized in Markdown.
 
 ## Additional Resources and Documentation:
 ### General Documentation
