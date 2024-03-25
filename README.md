@@ -134,9 +134,13 @@ Commits are very important part of collaboration and should follow an agreed on 
 
 Once you've made commits and are done working on the feature your branch was for, you should make a pull request. A pull request is meant to allow your teammates to review your changes, give you feedback, and the merge all the functional code into one central location (main branch).
 
-## Markdown and Report
+#### Undoing Commits, Pushes, Merges, etc.
 
-README files are formatted using Markdown in GitHub. If you're not familiar with Markdown, or if you need some syntax information, you can find syntax and tips in [Markdown resource file](resources/MARKDOWN.md). Additionally, for your convenience, we have provided a template to use for your [report](resources/REPORT.md) which is written and organized in Markdown.
+If you've made a mistake (*happens to the best of us*) in the changes you've made and committed, pushed, or merged, you can undo the majority of those changes using Git CLI. This [guide](https://sethrobertson.github.io/GitFixUm/fixup.html) allows you to interactively navigate through the resources based on the actions you've taken to find the solution for your problem.
+
+## Markdown and README
+
+README files are formatted using Markdown in GitHub. If you're not familiar with Markdown, or if you need some syntax information, you can find syntax and tips in [Markdown resource file](resources/MARKDOWN.md). In addition to README files being formatted using Markdown, you can use the same syntax in your commit messages, your issues, and milestones to format any text.
 
 ## Additional Resources and Documentation:
 ### General Documentation
