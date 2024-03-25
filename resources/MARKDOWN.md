@@ -1,8 +1,8 @@
-<h1> README, Markdown, and Report Submission </h1>
+<h1> README and Markdown </h1>
 
-For this project, you're expected to submit a report that is similar to those you've done for projects 1 and 2, with the proposal submitted in 3a included. To centralize this with your source code and video, you will write your Report in Markdown as a README file. Since you're supposed to create your project repository from this template, edit the existing README.md file, remove all the contents that are currently there, and replace them with your report.
+The [README](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes) file is supposed to be the main point of introduction to any repository. Its purpose is to provide brief summary of the purpose of the project, specifications, rules, necessary resources, basic use guides, etc. Putting the README.md in your root or docs directory will automatically be recognized by GitHub and will be shown to anyone who visits the repository. For all documents, including README files, commit messages and issues, GitHub uses Markdown for formatting. If you check the resources on writing READMEs (like [this one](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/)) you will see that its contents are supposed to be very similar to what we ask of you for your project proposal. It is a good practice as a collaborative developer to keep such information about your project in an easily accessible place, such as the file that will automatically be displayed for your project. 
 
-Putting the README.md in your root or docs directory will automatically be recognized by GitHub and will be shown to anyone who visits the repository. For all documents, including README files, commit messages and issues, GitHub uses Markdown for formatting.
+- Bonus resource: [Make README](https://www.makeareadme.com/)
 
 ### Important Elements
 |Element|Markdown Syntax| Example |
@@ -23,7 +23,7 @@ Footnote	| Here's a sentence with a footnote. [\^1] <br> [\^1]: This is the foot
 
 ### Important Note on ToC
 
-To include the Table of Contents (for your report), you can use links:
+To include the Table of Contents, you can use links:
 
 	\[link](www.example.com)
 
