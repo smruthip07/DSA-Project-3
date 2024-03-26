@@ -40,7 +40,7 @@ The following video has instructions on local development using Git and GitHub:
 To illustrate the development process, we've also made a demo video to show how the GitHub flow looks like on an example:
 - [Mastering GitHub Workflow](https://youtu.be/PbTdROv0TJw) - Has chapters and closed-captions
 
-Here are the instructions on how to Collaborate for Project 3 which are similar to what was covered in the video. You may skip reading these if you have watched the video:
+Here are the instructions on how to Collaborate for Project 3 which are similar to what was covered in the Introduction to GitHub video. You may skip reading these if you have watched that video:
 
 ### Step 1: Create Your Project Repository
 
