@@ -14,7 +14,7 @@ This is the template for Project 3 repositories. It includes all the assignment 
 			- [Commits](#commits)
 				- [Guidelines for good commit messages](#guidelines-for-good-commit-messages)
 			- [Pull Requests](#pull-requests)
-	- [Markdown and Report](#markdown-and-report)
+	- [Markdown and README](#markdown-and-readmet)
 	- [Additional Resources and Documentation:](#additional-resources-and-documentation)
 		- [General Documentation](#general-documentation)
 		- [Additional Specific Documentation](#additional-specific-documentation)
