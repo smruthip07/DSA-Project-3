@@ -31,17 +31,16 @@ This is a group project. As such, you're expected to equally contribute to all p
 
 The goal of this project is to get you familiar with the creative process of software development for a general purpose use and how to use data structures or algorithms for those applications. To go with the professional development that the project offers in terms of general use application, you will also get more familiar with version control and GitHub platform to facilitate the collaborative work with extensive planning and organization abilities.
 
-This step by step process is linked in this video **if you aren't familiar with GitHub**. Here are the instructions on how to Collaborate for Project 3 which are similar to what was covered in the video. You may skip reading these if you have watched the video:
-- [YouTube](https://youtu.be/CaGUAi6jnik) - Doesn't have chapters but has subtitles
-- [Loom](https://www.loom.com/share/5f06c23105cf449a8f526b997cb3768b?sid=e30f822f-11c1-4ce7-8821-008932fd930a) - Has chapters and transcript
+This step-by-step process is linked in this video **if you aren't familiar with GitHub**:
+- [Introduction to GitHub - General GitHub Features](https://youtu.be/SoEPYV6Nrxo) - Has chapters and closed-captions
 
-Also, the following video has instructions on local development using Git and GitHub:
-- [YouTube]() - Doesn't have chapters but has subtitles
-- [Loom]() - Has chapters and transcript
+The following video has instructions on local development using Git and GitHub:
+- [Local Development with Git and GitHub](https://youtu.be/9MPMu8qBfPo) - Has chapters and closed-captions
 
 To illustrate the development process, we've also made a demo video to show how the GitHub flow looks like on an example:
-- [YouTube]() - Doesn't have chapters but has subtitles
-- [Loom]() - Has chapters and transcript
+- [Mastering GitHub Workflow](https://youtu.be/PbTdROv0TJw) - Has chapters and closed-captions
+
+Here are the instructions on how to Collaborate for Project 3 which are similar to what was covered in the video. You may skip reading these if you have watched the video:
 
 ### Step 1: Create Your Project Repository
 
