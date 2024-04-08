@@ -127,6 +127,20 @@ Commits are very important part of collaboration and should follow an agreed on 
     - If it's a fix, describe the bug
 9.  Be **CONCISE**.
 
+##### Examples of Commit Messages:
+- "." - Very Bad (What does this even mean?)
+- "m" - Very Bad (Okay?)
+- ":)" - Very Bad (I hope your team members understand what this means because I don't)
+- "main function" - Bad (What about it?)
+- "First commit" - Bad (Congratulations?)
+- "Update main.cpp" - Better but still bad (What changed?)
+- "added mergesort.h, will add std::chrono later" - A bit better (Future plans shouldn't be the main point of a message. What does this commit change?)
+- "removed empty line from bottom of dictionary and updated UI" - Good (But stick to one change per commit)
+- "added filter buttons to sort menu" - Very Good (Use imperative mood and capitalize the messages, but the content of the message is excellent)
+
+
+
+
 #### Pull Requests
 
 > "A pull request is a proposal to merge a set of changes from one branch into another. In a pull request, collaborators can review and discuss the proposed set of changes before they integrate the changes into the main codebase. Pull requests display the differences, or diffs, between the content in the source branch and the content in the target branch." [About Pull Requests in GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
