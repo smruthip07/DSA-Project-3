@@ -11,7 +11,7 @@
 
 int main(){
 
-    std::ifstream data("organizations-10000.csv");
+    std::ifstream data("people-10000.csv");
     std::string line;
     HashTable hashTable;
 

@@ -10,6 +10,8 @@
 class HashTable {
 
     struct Person {
+        std::string id;
+
         std::string fName;
         std::string lName;
         std::string sex;
@@ -23,6 +25,11 @@ class HashTable {
     };
 
 public:
+
+    int hashFunction(std::string key) {
+
+    }
+
     HashTable() = default;
 
     void insert(std::istringstream& iss) {
