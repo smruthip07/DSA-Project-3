@@ -59,7 +59,8 @@ public:
 
     void insert(std::string& line) {
         std::istringstream iss(line);
-        std::string id, f, l, s, e, p, d, j;
+        std::string ind, id, f, l, s, e, p, d, j;
+        std::getline(iss, ind, ',');
         std::getline(iss, id, ',');
         std::getline(iss, f, ',');
         std::getline(iss, l, ',');
@@ -91,6 +92,7 @@ public:
 
         //Add person to table at index given by the hash function
         table[index] = person;
+        //std::cout << id << " ";
     }
 
 
@@ -183,6 +185,92 @@ public:
 
         return info.str();
     }
+
+
+    int getCount() {
+        int count = 0;
+        for (const auto& head : table) {
+            Person* curr = head;
+            while (curr) {
+                count++;
+                curr = curr->next;
+            }
+        }
+        return count;
+    }
+
+    double loadFactor() {
+        return static_cast<double>(getCount()) / prime;
+    }
+
+    int collisionCount() {
+        int collisions = 0;
+        for (const auto& head : table) {
+            int bucketCount = 0;
+            Person* curr = head;
+            while (curr) {
+                bucketCount++;
+                curr = curr->next;
+            }
+            if (bucketCount > 1) {
+                collisions += bucketCount - 1;
+            }
+        }
+        return collisions;
+    }
+
+
+    double averageChainLength() {
+        int totalLength = 0;
+        int notEmpty = 0;
+
+        for (const auto& head : table) {
+            if (head != nullptr) {
+                notEmpty++;
+                int length = 0;
+                Person* temp = head;
+                while (temp != nullptr) {
+                    length++;
+                    temp = temp->next;
+                }
+                totalLength += length;
+            }
+        }
+
+        if (notEmpty != 0) {
+            return static_cast<double>(totalLength) / notEmpty;
+        }
+        return 0.0;
+    }
+
+    std::string statistics() {
+        std::ostringstream oss;
+        oss << "Total Entries: " << getCount() << "\n"
+            << "Load Factor: " << loadFactor() << "\n"
+            << "Collisions: " << collisionCount() << "\n"
+            << "Average Chain Length: " << averageChainLength() << "\n";
+        return oss.str();
+    }
+
+    std::string display() {
+        std::ostringstream oss;
+
+        for (int i = 0; i < prime; ++i) {
+            Person* temp = table[i];
+            if (temp != nullptr) {
+                oss << "Bucket " << i << ": ";
+                while (temp != nullptr) {
+                    oss << "[" << temp->id << "] -> ";
+                    temp = temp->next;
+                }
+                oss << "nullptr\n";
+            }
+        }
+
+        return oss.str();
+    }
+
+
 
     ~HashTable() {
         for (auto& head : table) {

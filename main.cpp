@@ -12,6 +12,14 @@
 
 int main() {
 
+    HashTable hashTable;
+    //BPTree tree;
+    std::chrono::duration<double> durationHash;
+    std::chrono::duration<double> durationTree;
+
+    bool hashCreated = false;
+    bool treeCreated = false;
+
 
     while (true) {
         std::cout <<"|---------------------------------------------------------|\n";
@@ -38,19 +46,10 @@ int main() {
             break;
         }
 
-        bool hashCreated = false;
-        bool treeCreated = false;
         if (choice == 1) {
             std::ifstream data("people-100000.csv");
-            std::cout << "Data loaded";
+            std::cout << "Data loaded" << std::endl;
             std::cin >> choice;
-
-
-            HashTable hashTable;
-            BPTree tree;
-            std::chrono::duration<double> durationHash;
-            std::chrono::duration<double> durationTree;
-
 
 
             if (choice == 2) {
@@ -58,7 +57,7 @@ int main() {
 
                 auto start = std::chrono::high_resolution_clock::now();
                 while (std::getline(data, line)) {
-                    tree.insert(line);
+                    //tree.insert(line);
                 }
                 auto end = std::chrono::high_resolution_clock::now();
                 durationTree = end - start;
@@ -89,13 +88,13 @@ int main() {
                     std::cout << "Enter Key: ";
                     std::string key;
                     std::cin >> key;
-                    std::cout << BPTree.getPerson(key);
+                    //std::cout << BPTree.getPerson(key);
                 }
                 if (choice == 4) {
-                    std::cout << BPTree.display();
+                    //std::cout << BPTree.display();
                 }
                 if (choice == 5) {
-                    std::cout << BPTree.statistics();
+                    //std::cout << BPTree.statistics();
                 }
                 if (choice == 6) {
                     std::cout << "It took " << durationTree.count() << " to insert all the data into the B+ tree." << std::endl;
@@ -106,10 +105,11 @@ int main() {
 
             while ((choice == 8 || choice == 9 || choice == 10 || choice == 11) && hashCreated) {
                 if (choice == 8) {
-                    std::cout << "Enter Key: ";
+                    std::cout << "Enter Key: " << std::endl;
                     std::string key;
                     std::cin >> key;
-                    std::cout << hashTable.getPerson(key);
+                    std::cout << hashTable.info(key);
+                    std::cin >> choice;
                 }
                 if (choice == 9) {
                     std::cout << hashTable.display();
