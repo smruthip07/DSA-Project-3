@@ -109,6 +109,7 @@ int main() {
                     std::string key;
                     std::cin >> key;
                     std::cout << hashTable.info(key);
+                    std::cout << std::endl;
                     std::cin >> choice;
                 }
                 if (choice == 9) {
@@ -117,10 +118,12 @@ int main() {
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> durationDisplay = end - start;
                     std::cout << "Display time: "<<durationDisplay.count();
+                    std::cout << std::endl;
 
                 }
                 if (choice == 10) {
                     std::cout << hashTable.statistics();
+                    std::cout << std::endl;
                 }
                 if (choice == 11) {
                     std::cout << "It took " << durationHash.count() << " to insert all the data into the hash table." << std::endl;
@@ -138,6 +141,7 @@ int main() {
                     auto e = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> searchDuration = e - s;
                     std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
+                    std::cout << std::endl;
 
                 }
                 std::cin >> choice;
