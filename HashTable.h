@@ -5,7 +5,13 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-
+#include <iostream>
+#include "string"
+#include "vector"
+#include "HashTable.h"
+#include "Tree.h"
+#include <fstream>
+#include <sstream>
 
 class HashTable {
 
@@ -20,52 +26,173 @@ class HashTable {
         std::string dob;
         std::string job;
 
-        Person(std::string f, std::string l, std::string s, std::string e, std::string p, std::string d, std::string j)
-        : fName(f), lName(l), sex(s), email(e), phone(p), dob(d), job(j) {}
+        Person* next;
+
+        Person(std::string i, std::string f, std::string l, std::string s, std::string e, std::string p, std::string d, std::string j)
+        : id(i), fName(f), lName(l), sex(s), email(e), phone(p), dob(d), job(j), next(nullptr) {}
     };
+
+    const int prime = 99991;
+    std::vector<Person*> table;
+
+
+
+    //source: https://github.com/SRombauts/cpp-algorithms/blob/master/src/algo/hash.cpp
+    //https://blog.daisie.com/comprehensive-guide-to-non-cryptographic-hash-functions/
+    size_t hashFunction(std::string key) {
+        //FNV-1a non-cryptographic hash function
+
+        //64 bit offset_basis
+        size_t hash = 14695981039346656037ULL;
+
+        for (size_t i = 0; key[i] != 0; ++i) {
+            //FNV_prime = 240 + 28 + 0xb3 = 1099511628211
+            hash = 1099511628211ULL * (hash ^ static_cast<unsigned char>(key[i]));
+        }
+
+        return hash%prime;
+    }
 
 public:
 
-    int hashFunction(std::string key) {
+    HashTable() : table(prime) {};
 
+    void insert(std::string& line) {
+        std::istringstream iss(line);
+        std::string id, f, l, s, e, p, d, j;
+        std::getline(iss, id, ',');
+        std::getline(iss, f, ',');
+        std::getline(iss, l, ',');
+        std::getline(iss, s, ',');
+        std::getline(iss, e, ',');
+        std::getline(iss, p, ',');
+        std::getline(iss, d, ',');
+        std::getline(iss, j, ',');
+
+        Person* person = new Person(id, f, l, s, e, p, d, j);
+        size_t index = hashFunction(id);
+
+        Person* temp = table[index];
+        while (temp != nullptr) {
+            if (temp->id == id) {
+                temp->fName = f;
+                temp->lName = l;
+                temp->sex = s;
+                temp->email = e;
+                temp->phone = p;
+                temp->dob = d;
+                temp->job = j;
+                return;
+            }
+            temp = temp->next;
+        }
+
+        person->next = table[index];
+
+        //Add person to table at index given by the hash function
+        table[index] = person;
     }
 
-    HashTable() = default;
 
-    void insert(std::istringstream& iss) {
 
-    }
+    void remove(const std::string& key) {
+        size_t index = hashFunction(key);
+        Person* curr = table[index];
+        Person* prev = nullptr;
 
-    std::string info(std::string key) {
-
-    }
-
-    void remove(std::string key) {
-
-    }
-
-    std::string getName(std::string key) {
-
-    }
-
-    std::string getEmail(std::string key) {
-
-    }
-
-    std::string getPhone(std::string key) {
-
-    }
-
-    std::string getDOB(std::string key) {
-
-    }
-
-    std::string getJob(std::string key) {
-
+        while (curr != nullptr) {
+            if (curr->id == key) {
+                if (prev != nullptr) {
+                    prev->next = curr->next;
+                } else {
+                    table[index] = curr->next;
+                }
+                delete curr;
+                return;
+            }
+            prev = curr;
+            curr = curr->next;
+        }
     }
 
 
+    Person* getPerson(const std::string& key) {
+        size_t index = hashFunction(key);
+        Person* temp = table[index];
+        while (temp != nullptr) {
+            if (temp->id == key) {
+                return temp;
+            }
+            temp = temp->next;
+        }
+        return nullptr;
+    }
 
+    std::string getName(const std::string key) {
+        Person* p = getPerson(key);
+        if (p != nullptr) {
+            return p->fName + " " + p->lName;
+        }
+        return "Not found";
+    }
+
+    std::string getEmail(const std::string key) {
+        Person* p = getPerson(key);
+        if (p != nullptr) {
+            return p->email;
+        }
+        return "Not found";
+    }
+
+    std::string getPhone(const std::string key) {
+        Person* p = getPerson(key);
+        if (p != nullptr) {
+            return p->phone;
+        }
+        return "Not found";
+    }
+
+    std::string getDOB(const std::string key) {
+        Person* p = getPerson(key);
+        if (p != nullptr) {
+            return p->dob;
+        }
+        return "Not found";
+    }
+
+    std::string getJob(const std::string key) {
+        Person* p = getPerson(key);
+        if (p != nullptr) {
+            return p->job;
+        }
+        return "Not found";
+    }
+
+    std::string info(const std::string key) {
+        Person* p = getPerson(key);
+        if (p == nullptr) {
+            return "Not found";
+        }
+        std::ostringstream info;
+        info << "Name: " << p->fName << " " << p->lName << "\n"
+            << "Sex: " << p->sex << "\n"
+            << "Email: " << p->email << "\n"
+            << "Phone: " << p->phone << "\n"
+            << "DOB: " << p->dob << "\n"
+            << "Job: " << p->job;
+
+        return info.str();
+    }
+
+    ~HashTable() {
+        for (auto& head : table) {
+            while (head) {
+                Person* next = head->next;
+                delete head;
+                head = next;
+            }
+        }
+    }
 
 
 
