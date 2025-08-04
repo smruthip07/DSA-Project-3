@@ -6,7 +6,7 @@ To compile and run use the commands:
 - g++ -std=c++17 main.cpp -o out
 - ./out
 
-- Enter commands according to the menu:
+## Enter commands according to the menu:
 - 1 to load the data from CSV file
 - 2 to build the B+ Tree
 - 3 to look up an element from the B+ Tree using ID
