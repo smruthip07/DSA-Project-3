@@ -25,5 +25,5 @@ To compile and run use the commands:
 - 10 to display Hash Table statistics
 - 11 to display Hash Table Performance
 
-#### Comoare
+#### Compare
 - 12 to get a comparision of the 2 structures.
