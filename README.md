@@ -7,17 +7,23 @@ To compile and run use the commands:
 - ./out
 
 ## Enter commands according to the menu:
+
+### Load Data
 - 1 to load the data from CSV file
+
+#### B+ Tree
 - 2 to build the B+ Tree
 - 3 to look up an element from the B+ Tree using ID
 - 4 to display the B+ Tree
 - 5 to display B+ Tree statistics
 - 6 to display B+ Tree Performance
 
+#### Hash Table
 - 7 build the Hash Table
 - 8 to look up an element from the Hash Table using ID
 - 9 to display the Hash Table
 - 10 to display Hash Table statistics
 - 11 to display Hash Table Performance
 
+#### Comoare
 - 12 to get a comparision of the 2 structures.
