@@ -38,7 +38,6 @@ class HashTable {
 
 
     //source: https://github.com/SRombauts/cpp-algorithms/blob/master/src/algo/hash.cpp
-    //https://blog.daisie.com/comprehensive-guide-to-non-cryptographic-hash-functions/
     size_t hashFunction(std::string key) {
         //FNV-1a non-cryptographic hash function
 
@@ -173,7 +172,7 @@ public:
     std::string info(const std::string key) {
         Person* p = getPerson(key);
         if (p == nullptr) {
-            return "Not found";
+            return "Not found\n";
         }
         std::ostringstream info;
         info << "Name: " << p->fName << " " << p->lName << "\n"
@@ -270,6 +269,20 @@ public:
         return oss.str();
     }
 
+
+    void fakeRemove(const std::string& key) {
+        size_t index = hashFunction(key);
+        Person* curr = table[index];
+        Person* prev = nullptr;
+
+        while (curr != nullptr) {
+            if (curr->id == key) {
+                return;
+            }
+            prev = curr;
+            curr = curr->next;
+        }
+    }
 
 
     ~HashTable() {

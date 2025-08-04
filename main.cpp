@@ -112,14 +112,33 @@ int main() {
                     std::cin >> choice;
                 }
                 if (choice == 9) {
+                    auto start = std::chrono::high_resolution_clock::now();
                     std::cout << hashTable.display();
+                    auto end = std::chrono::high_resolution_clock::now();
+                    std::chrono::duration<double> durationDisplay = end - start;
+                    std::cout << "Display time: "<<durationDisplay.count();
+
                 }
                 if (choice == 10) {
                     std::cout << hashTable.statistics();
                 }
                 if (choice == 11) {
                     std::cout << "It took " << durationHash.count() << " to insert all the data into the hash table." << std::endl;
-                    //add time to retrieve value from key
+
+
+                    std::string a = "abcd";
+                    auto start = std::chrono::high_resolution_clock::now();
+                    hashTable.fakeRemove(a);
+                    auto end = std::chrono::high_resolution_clock::now();
+                    std::chrono::duration<double> removeDuration = end - start;
+                    std::cout << "It took " << removeDuration.count() << " seconds to remove an item.\n";
+
+                    auto s = std::chrono::high_resolution_clock::now();
+                    hashTable.info(a);
+                    auto e = std::chrono::high_resolution_clock::now();
+                    std::chrono::duration<double> searchDuration = e - s;
+                    std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
+
                 }
                 std::cin >> choice;
             }
