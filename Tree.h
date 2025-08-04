@@ -132,7 +132,7 @@ private:
             for (int i=0; i< curr; i++) {
                 cout << " ";
             }
-            for (auto it& value : p->data) {
+            for (auto &value : p->data) {
                 cout << value << " ";
             }
             cout << endl;
