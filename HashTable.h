@@ -9,12 +9,12 @@
 #include "string"
 #include "vector"
 #include "HashTable.h"
-#include "Tree.h"
 #include <fstream>
 #include <sstream>
 
 class HashTable {
 
+    // Holds person information
     struct Person {
         std::string id;
 
@@ -32,7 +32,9 @@ class HashTable {
         : id(i), fName(f), lName(l), sex(s), email(e), phone(p), dob(d), job(j), next(nullptr) {}
     };
 
+    // Used for writing the hash function
     const int prime = 99991;
+
     std::vector<Person*> table;
 
 
@@ -54,8 +56,10 @@ class HashTable {
 
 public:
 
+    //default constructor
     HashTable() : table(prime) {};
 
+    //inserts elemnt into the table
     void insert(std::string& line) {
         std::istringstream iss(line);
         std::string ind, id, f, l, s, e, p, d, j;
@@ -91,11 +95,10 @@ public:
 
         //Add person to table at index given by the hash function
         table[index] = person;
-        //std::cout << id << " ";
     }
 
 
-
+    //Removes value using the key/ID
     void remove(const std::string& key) {
         size_t index = hashFunction(key);
         Person* curr = table[index];
@@ -116,7 +119,8 @@ public:
         }
     }
 
-
+    //Helper function for all getter methods
+    //Returns a pointer to Person node based on key
     Person* getPerson(const std::string& key) {
         size_t index = hashFunction(key);
         Person* temp = table[index];
@@ -129,6 +133,7 @@ public:
         return nullptr;
     }
 
+    //Returns name of Person using the key
     std::string getName(const std::string key) {
         Person* p = getPerson(key);
         if (p != nullptr) {
@@ -137,6 +142,7 @@ public:
         return "Not found";
     }
 
+    //Returns email of Person using the key
     std::string getEmail(const std::string key) {
         Person* p = getPerson(key);
         if (p != nullptr) {
@@ -145,6 +151,7 @@ public:
         return "Not found";
     }
 
+    //Returns phone number of Person using the key
     std::string getPhone(const std::string key) {
         Person* p = getPerson(key);
         if (p != nullptr) {
@@ -153,6 +160,7 @@ public:
         return "Not found";
     }
 
+    //Returns date of birth of Person using the key
     std::string getDOB(const std::string key) {
         Person* p = getPerson(key);
         if (p != nullptr) {
@@ -161,6 +169,7 @@ public:
         return "Not found";
     }
 
+    //Returns job title of Person using the key
     std::string getJob(const std::string key) {
         Person* p = getPerson(key);
         if (p != nullptr) {
@@ -169,6 +178,7 @@ public:
         return "Not found";
     }
 
+    //Returns all the stored information of Person using the key
     std::string info(const std::string key) {
         Person* p = getPerson(key);
         if (p == nullptr) {
@@ -180,12 +190,13 @@ public:
             << "Email: " << p->email << "\n"
             << "Phone: " << p->phone << "\n"
             << "DOB: " << p->dob << "\n"
-            << "Job: " << p->job;
+            << "Job: " << p->job << '\n';
 
         return info.str();
     }
 
 
+    //returns the number of values being stored in hash table
     int getCount() {
         int count = 0;
         for (const auto& head : table) {
@@ -198,10 +209,12 @@ public:
         return count;
     }
 
+    //returns load factor of the hash table
     double loadFactor() {
         return static_cast<double>(getCount()) / prime;
     }
 
+    //returns the number of collisions that took place
     int collisionCount() {
         int collisions = 0;
         for (const auto& head : table) {
@@ -219,6 +232,7 @@ public:
     }
 
 
+    //returns the average number of elements per bucket
     double averageChainLength() {
         int totalLength = 0;
         int notEmpty = 0;
@@ -242,6 +256,7 @@ public:
         return 0.0;
     }
 
+    //returns general hash table info
     std::string statistics() {
         std::ostringstream oss;
         oss << "Total Entries: " << getCount() << "\n"
@@ -251,6 +266,7 @@ public:
         return oss.str();
     }
 
+    //returns all elements
     std::string display() {
         std::ostringstream oss;
 
@@ -277,6 +293,7 @@ public:
     }
 
 
+    //function to measure time taken by remove without having to actually remove elements from the table.
     void fakeRemove(const std::string& key) {
         size_t index = hashFunction(key);
         Person* curr = table[index];
@@ -292,6 +309,7 @@ public:
     }
 
 
+    //destructor
     ~HashTable() {
         for (auto& head : table) {
             while (head) {
