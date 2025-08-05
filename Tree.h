@@ -4,6 +4,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 template <typename T> class BPTree {
@@ -24,15 +25,15 @@ private:
             newNode->data.push_back(child->data[i]); // push every node down by one
         }
         if (!child->leaf) { // incase is not a leaf we also move their kids
-            for (int i = size; i < full; i++) {
+            for (int i = size; i <= full; i++) {
                 newNode->children.push_back(child->children[i]);
             }
-            child->children.resize(size);
+            child->children.resize(size+1);
         }
         child->data.resize(size);
         // insert new node into parents kid array
         parent->children.insert(parent->children.begin()+1+In, newNode);
-        T MoveUp = (child->leaf ? newNode->data[0] : child->data.back()); // if the key needs to become a parent make it one
+        T MoveUp = (child->leaf ? newNode->data.front() : child->data.back()); // if the key needs to become a parent make it one
         parent->data.insert(parent->data.begin()+In, MoveUp);
         if (child->leaf) { // if we split on the leaf, connect the leaf nodes correctly
             newNode->next =  child->next;
@@ -121,42 +122,46 @@ private:
         } else {
             kid->data.push_back(key->data[In]);
             key->data[In] = sibling->data[0];
-            sibling->data.erase(sibling->data[0]);
+            sibling->data.erase(sibling->data.begin());
             kid->children.push_back(sibling->children[0]);
             sibling->children.erase(sibling->children.begin());
         }
     }
     void printTreeHelper(Node* key, int curr) {
-        Node* p = root;
-        if (p != nullptr) {
+        if (!key) {
+            return;
+        }
             for (int i=0; i< curr; i++) {
                 cout << " ";
             }
-            for (auto &value : p->data) {
-                cout << value << " ";
+            for (auto &value : key->data) {
+                cout << value.line << " ";
             }
             cout << endl;
-            for (Node*it : p->children) {
+        if (!key->leaf) {
+            for (Node*it : key->children) {
                 printTreeHelper(it, curr+1);
+                }
             }
         }
-    }
+
     public:
     BPTree(int degree) : root(nullptr), size(degree) {}
-    bool search(T value){
+    T search(T value){
         Node* p = root;
         while (p) {
             int it =0;
-            for (int i=0; value > p->data[i] && i < p->data.size(); i++) {it++;}
-            if (value == p->data[it]) {
-                return true;
+            // for (int i=0; value > p->data[i] && i < p->data.size(); i++) {it++;}
+            while (it < (int)p->data.size() && value > p->data[it]) {it++;}
+            if (it < (int)p->data.size() && value == p->data[it]) {
+                return p->data[it];
             }
             if (p->leaf) {
-                return false;
+                break;
             }
             p = p->children[it];
         }
-        return false;
+        return T{-1,""}; //Doesnt exist
     }
     void insert(T value) {
         if (root == nullptr) {
@@ -179,5 +184,23 @@ private:
         }
     }
     void print(){printTreeHelper(root, 0);}
+    vector<T> rangeQuery(T low, T high) {
+        vector<T> result;
+        int i =0;
+        Node* p = root;
+        while (!p->leaf) {
+            while (i<p->data.size() && low > p->data[i]) {i++;} // looking for lower bound
+            p = p->children[i];
+        }
+        while (p != nullptr) {
+            for (const T& it: p->data) {
+                if (it >= low && it <= high) {
+                    result.push_back(it);
+                }
+                if (it > high){return result;}
+            }
+            p = p->next;
+        }
+    }
 
 };

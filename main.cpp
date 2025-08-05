@@ -12,14 +12,26 @@
 
 int main() {
 
+    struct Contact {
+        int   index;    // the index where all the info is recorded
+        string line;    // entire CSV row
+        // so overwriting operators so they can be managed as ints in the tree
+        bool operator<(Contact const &o)  const { return index <  o.index; }
+        bool operator>(Contact const &o)  const { return index >  o.index; }
+        bool operator==(Contact const &o) const { return index == o.index; }
+        bool operator<=(Contact const &o) const { return index <= o.index; }
+        bool operator>=(Contact const &o) const { return index >= o.index; }
+    };
+
     HashTable hashTable;
-    //BPTree tree;
+    BPTree<Contact> tree(30);
     std::chrono::duration<double> durationHash;
     std::chrono::duration<double> durationTree;
 
     bool hashCreated = false;
     bool treeCreated = false;
-
+    bool dataLoaded = false;
+    ifstream data;
 
     while (true) {
         std::cout <<"|---------------------------------------------------------|\n";
@@ -41,116 +53,169 @@ int main() {
 
         int choice;
         std::cin >> choice;
+        switch (choice) {
+                    case 13: {
+                        break;
+                    }
 
-        if (choice == 13) {
-            break;
-        }
+                    case 1: {
+                        data.open("people-10000.csv");
+                        if (!data){
+                            cout<< "Failed to open file\n";}
+                        else {
+                            std::cout << "Data loaded" << std::endl;
+                        }
+                        break;
+                    }
+            case 2: {
+                        if (!data.is_open()) {
+                            std::cout << "Please load data first (option 1).\n";
+                            break;
+                        }
+                        data.clear(); //rewind the file & clear EOF/fail bits
+                        data.seekg(0, std::ios::beg);
+                        //skip the header line
+                        std::string line;
+                        if (!std::getline(data, line)) {
+                            std::cerr << "File is empty—nothing to skip.\n";
+                            break;
+                        }
+                        auto start = std::chrono::high_resolution_clock::now();
+                        while (std::getline(data, line)) {
+                            if (line.empty())
+                                continue;
+                            auto commaPos = line.find(',');
+                            if (commaPos == std::string::npos)
+                                continue;
+                            try { // stoi was giving problems, decided to go with try and catch
+                                int index = std::stoi(line.substr(0, commaPos));
+                                tree.insert(Contact{ index, line });
+                            } catch (const std::exception &) {
+                                continue;
+                            }
+                        }
+                        auto end = std::chrono::high_resolution_clock::now();
+                        durationTree = end - start;
 
-        if (choice == 1) {
-            std::ifstream data("people-100000.csv");
-            std::cout << "Data loaded" << std::endl;
-            std::cin >> choice;
-
-
-            if (choice == 2) {
-                std::string line;
-
-                auto start = std::chrono::high_resolution_clock::now();
-                while (std::getline(data, line)) {
-                    //tree.insert(line);
-                }
-                auto end = std::chrono::high_resolution_clock::now();
-                durationTree = end - start;
-                std::cout << "B+ tree created" << std::endl;
-                treeCreated = true;
-                std::cin >> choice;
+                        std::cout << "B+ tree created\n";
+                        treeCreated = true;
+                        break;
             }
 
 
-            if (choice == 7) {
-                std::string line;
+                    case 7: {
+                            std::string line;
 
 
-                auto start = std::chrono::high_resolution_clock::now();
-                while (std::getline(data, line)) {
-                    hashTable.insert(line);
+                            auto start = std::chrono::high_resolution_clock::now();
+                            while (std::getline(data, line)) {
+                                hashTable.insert(line);
+                            }
+                            auto end = std::chrono::high_resolution_clock::now();
+                            durationHash = end - start;
+                            std::cout << "Hash table created" << std::endl;
+                            hashCreated = true;
+                        break;
+                        }
+
+                    case 3: {
+                            std::cout << "Enter Key: ";
+                            int key;
+                            std::cin >> key;
+                            // Contact finding{ key,"" };
+                            Contact searched = tree.search({key,""});
+                            if (!searched.index != -1) {
+                                cout << searched.line << endl;
+                            } else {
+                                std::cout << "Key not found" << endl;
+                            }
+                        break;
+                        }
+                    case 4:{
+                            int high;
+                            int low;
+                            cout<<  "high: ";
+                            cin >> high;
+                            cout << endl;
+                            cout <<"low: ";
+                            cin >> low;
+                            vector<Contact> keys = tree.rangeQuery(Contact{low,""},Contact{high,""});
+                            for (auto it: keys) {
+                                cout << it.line << endl;
+                            }
+                            break;
+                        }
+                    case 5: {
+                        auto start = std::chrono::high_resolution_clock::now();
+                        tree.print();
+                        auto end = std::chrono::high_resolution_clock::now();
+                        std::chrono::duration<double> durationDisplay = end - start;
+                        std::cout << "Display time: "<<durationDisplay.count() << endl;
+                        break;}
+                    case 6:{
+                        std::cout << "It took " << durationTree.count() << " to insert all the data into the B+ tree." << std::endl;
+                        //add time to retrieve value
+                        Contact TimeTrial {20,""};
+                        auto start = std::chrono::high_resolution_clock::now();
+                        tree.remove(TimeTrial);
+                        auto end = std::chrono::high_resolution_clock::now();
+                        std::chrono::duration<double> removeDuration = end - start;
+                        std::cout << "It took " << removeDuration.count() << " seconds to remove an item.\n";
+                        auto s = std::chrono::high_resolution_clock::now();
+                        tree.search(TimeTrial);
+                        auto e = std::chrono::high_resolution_clock::now();
+                        std::chrono::duration<double> searchDuration = e - s;
+                        std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
+                        break;
                 }
-                auto end = std::chrono::high_resolution_clock::now();
-                durationHash = end - start;
-                std::cout << "Hash table created" << std::endl;
-                hashCreated = true;
-                std::cin >> choice;
-            }
+                    case 8: {
+                        std::cout << "Enter Key: " << std::endl;
+                        std::string key;
+                        std::cin >> key;
+                        std::cout << hashTable.info(key);
+                         break;
+                    }
+                    case 9:{
+                        auto start = std::chrono::high_resolution_clock::now();
+                        std::cout << hashTable.display();
+                        auto end = std::chrono::high_resolution_clock::now();
+                        std::chrono::duration<double> durationDisplay = end - start;
+                        std::cout << "Display time: "<<durationDisplay.count();
+                        break;
+                    }
+                    case 10: {
+                        std::cout << hashTable.statistics();
+                        break;
+                    }
+                    case 11:{
+                        std::cout << "It took " << durationHash.count() << " to insert all the data into the hash table." << std::endl;
 
 
-            while ((choice == 3 || choice == 4 || choice == 5 || choice == 6) && treeCreated) {
-                if (choice == 3) {
-                    std::cout << "Enter Key: ";
-                    std::string key;
-                    std::cin >> key;
-                    //std::cout << BPTree.getPerson(key);
-                }
-                if (choice == 4) {
-                    //std::cout << BPTree.display();
-                }
-                if (choice == 5) {
-                    //std::cout << BPTree.statistics();
-                }
-                if (choice == 6) {
-                    std::cout << "It took " << durationTree.count() << " to insert all the data into the B+ tree." << std::endl;
-                    //add time to retrieve value
-                }
-                std::cin >> choice;
-            }
+                        std::string a = "abcd";
+                        auto start = std::chrono::high_resolution_clock::now();
+                        hashTable.fakeRemove(a);
+                        auto end = std::chrono::high_resolution_clock::now();
+                        std::chrono::duration<double> removeDuration = end - start;
+                        std::cout << "It took " << removeDuration.count() << " seconds to remove an item.\n";
 
-            while ((choice == 8 || choice == 9 || choice == 10 || choice == 11) && hashCreated) {
-                if (choice == 8) {
-                    std::cout << "Enter Key: " << std::endl;
-                    std::string key;
-                    std::cin >> key;
-                    std::cout << hashTable.info(key);
+                        auto s = std::chrono::high_resolution_clock::now();
+                        hashTable.info(a);
+                        auto e = std::chrono::high_resolution_clock::now();
+                        std::chrono::duration<double> searchDuration = e - s;
+                        std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
+                        break;
+                    }
                     std::cin >> choice;
-                }
-                if (choice == 9) {
-                    auto start = std::chrono::high_resolution_clock::now();
-                    std::cout << hashTable.display();
-                    auto end = std::chrono::high_resolution_clock::now();
-                    std::chrono::duration<double> durationDisplay = end - start;
-                    std::cout << "Display time: "<<durationDisplay.count();
+                    case 12: {
 
-                }
-                if (choice == 10) {
-                    std::cout << hashTable.statistics();
-                }
-                if (choice == 11) {
-                    std::cout << "It took " << durationHash.count() << " to insert all the data into the hash table." << std::endl;
+                    }
 
 
-                    std::string a = "abcd";
-                    auto start = std::chrono::high_resolution_clock::now();
-                    hashTable.fakeRemove(a);
-                    auto end = std::chrono::high_resolution_clock::now();
-                    std::chrono::duration<double> removeDuration = end - start;
-                    std::cout << "It took " << removeDuration.count() << " seconds to remove an item.\n";
 
-                    auto s = std::chrono::high_resolution_clock::now();
-                    hashTable.info(a);
-                    auto e = std::chrono::high_resolution_clock::now();
-                    std::chrono::duration<double> searchDuration = e - s;
-                    std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
-
-                }
-                std::cin >> choice;
-            }
-
-            }
-            else if (hashCreated && treeCreated && choice == 12) {
-
-            }
-            else {
+            default:
                 std::cout << "Invalid choice. Try again.\n";
-            }
 
+        }
     }
 
     return 0;
