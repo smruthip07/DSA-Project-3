@@ -49,7 +49,7 @@ int main() {
         std::cout <<"|---------------------------------------------------------|\n";
         std::cout <<"|   B+ Tree Index            |       Hash Table Index     |\n";
         std::cout <<"|---------------------------------------------------------|\n";
-        std::cout <<"|2. Build B+ Tree Index      | 7. Build Hash Table Index   |\n";
+        std::cout <<"|2. Build B+ Tree Index      | 7. Build Hash Table Index  |\n";
         std::cout <<"|3. Search Key in B+ Tree    | 8. Search Key in Hash Table|\n";
         std::cout <<"|4. Range Query              | 9. Display Hash Table      |\n";
         std::cout <<"|5. Display B+ Tree Structure|10. Hash Table Statistics   |\n";
@@ -219,15 +219,15 @@ int main() {
                         break;
                     }
                     case 12: {
-                        std::cout <<"|---------------------------------------------------------|\n";
-                        std::cout <<"|                        Comparison                       |\n";
-                        std::cout <<"|---------------------------------------------------------|\n";
-                        std::cout <<"|   B+ Tree Index            |       Hash Table Index     |\n";
-                        std::cout <<"|---------------------------------------------------------|\n";
-                        std::cout <<"|Build B+ Tree Index = "<< TreeInsert <<"| 7. Build Hash Table Index"<<HashInsert<<"  |\n";
-                        std::cout <<"|3. Search Key in B+ Tree"<<TreeSearch<<"    | 8. Search Key in Hash Table"<<HashSearch<<"|\n";
-                        std::cout <<"|5. Display B+ Tree Structure"<<TreeDisplay<<"| 9. Display Hash Table"<<HashDisplay<<"      |\n";
-                        std::cout <<"|---------------------------------------------------------|\n";
+                        std::cout <<"|--------------------------------------------------------------------------------------------|\n";
+                        std::cout <<"|                                        Comparison                                          |\n";
+                        std::cout <<"|--------------------------------------------------------------------------------------------|\n";
+                        std::cout <<"|             B+ Tree Index                  |                    Hash Table Index           |\n";
+                        std::cout <<"|--------------------------------------------------------------------------------------------|\n";
+                        std::cout <<"|Build B+ Tree Index = "<< TreeInsert <<"         | 7. Build Hash Table Index"<<HashInsert<<"              |\n";
+                        std::cout <<"|3. Search Key in B+ Tree"<<TreeSearch<<"      | 8. Search Key in Hash Table"<<HashSearch<<"      |\n";
+                        std::cout <<"|5. Display B+ Tree Structure"<<TreeDisplay<<"               | 9. Display Hash Table"<<HashDisplay<<"                       |\n";
+                        std::cout <<"|--------------------------------------------------------------------------------------------|\n\n\n";
                         break;
                     }
 
