@@ -272,22 +272,15 @@ public:
 
         for (int i = 0; i < prime; ++i) {
             Person* temp = table[i];
-            if (!temp) {continue;}
-            oss << "Bucket " << i << ": ";
+            if (temp != nullptr) {
+                oss << "Bucket " << i << ": ";
                 while (temp != nullptr) {
-                    oss << "(ID="    << temp->id
-                << ", Name=" << temp->fName << " " << temp->lName
-                << ", Sex="  << temp->sex
-                << ", Email="<< temp->email
-                << ", Phone="<< temp->phone
-                << ", DOB="  << temp->dob
-                << ", Job="  << temp->job
-                << ") -> ";
+                    oss << "[" << temp->id << "] -> ";
                     temp = temp->next;
                 }
                 oss << "nullptr\n";
             }
-
+        }
 
         return oss.str();
     }

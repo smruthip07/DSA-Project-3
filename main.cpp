@@ -67,7 +67,7 @@ int main() {
                     }
 
                     case 1: {
-                        data.open("people-10000.csv");
+                        data.open("people-100000.csv");
                         if (!data){
                             cout<< "Failed to open file\n";}
                         else {
@@ -113,7 +113,14 @@ int main() {
 
 
                     case 7: {
-                            std::string line;
+                        if (!data.is_open()) {
+                            std::cout << "Please load data first (option 1).\n";
+                            break;
+                        }
+                        data.clear();
+                        data.seekg(0, std::ios::beg);
+                        std::string line;
+                        std::getline(data, line);
 
 
                             auto start = std::chrono::high_resolution_clock::now();
