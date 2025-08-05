@@ -131,13 +131,9 @@ private:
         if (!key) {
             return;
         }
-            for (int i=0; i< curr; i++) {
-                cout << " ";
-            }
             for (auto &value : key->data) {
-                cout << value.line << " ";
+                cout << value.line << endl;
             }
-            cout << endl;
         if (!key->leaf) {
             for (Node*it : key->children) {
                 printTreeHelper(it, curr+1);

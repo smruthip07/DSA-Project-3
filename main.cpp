@@ -28,11 +28,9 @@ int main() {
     std::chrono::duration<double> durationHash;
     std::chrono::duration<double> durationTree;
     long double HashInsert;
-    long double HashDelete;
     long double HashSearch;
     long double HashDisplay;
     long double TreeInsert;
-    long double TreeDelete;
     long double TreeSearch;
     long double TreeDisplay;
 
@@ -63,6 +61,7 @@ int main() {
         std::cin >> choice;
         switch (choice) {
                     case 13: {
+                        cout << "DSA WAS FUN AND THIS PROJECT WAS COOL :)\n";
                         return 0;
                     }
 
@@ -104,6 +103,7 @@ int main() {
                         }
                         auto end = std::chrono::high_resolution_clock::now();
                         durationTree = end - start;
+                        TreeInsert = durationTree.count();
 
                         std::cout << "B+ tree created\n";
                         treeCreated = true;
@@ -177,7 +177,7 @@ int main() {
                         auto e = std::chrono::high_resolution_clock::now();
                         std::chrono::duration<double> searchDuration = e - s;
                         std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
-                        TreeDisplay = searchDuration.count();
+                        TreeSearch = searchDuration.count();
                         break;
                 }
                     case 8: {
@@ -216,6 +216,7 @@ int main() {
                         auto e = std::chrono::high_resolution_clock::now();
                         std::chrono::duration<double> searchDuration = e - s;
                         std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
+                        HashSearch = searchDuration.count();
                         break;
                     }
                     case 12: {
