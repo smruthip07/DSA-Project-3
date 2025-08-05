@@ -27,6 +27,14 @@ int main() {
     BPTree<Contact> tree(30);
     std::chrono::duration<double> durationHash;
     std::chrono::duration<double> durationTree;
+    long double HashInsert;
+    long double HashDelete;
+    long double HashSearch;
+    long double HashDisplay;
+    long double TreeInsert;
+    long double TreeDelete;
+    long double TreeSearch;
+    long double TreeDisplay;
 
     bool hashCreated = false;
     bool treeCreated = false;
@@ -55,7 +63,7 @@ int main() {
         std::cin >> choice;
         switch (choice) {
                     case 13: {
-                        break;
+                        return 0;
                     }
 
                     case 1: {
@@ -114,6 +122,7 @@ int main() {
                             auto end = std::chrono::high_resolution_clock::now();
                             durationHash = end - start;
                             std::cout << "Hash table created" << std::endl;
+                            HashInsert = durationHash.count();
                             hashCreated = true;
                         break;
                         }
@@ -151,6 +160,7 @@ int main() {
                         auto end = std::chrono::high_resolution_clock::now();
                         std::chrono::duration<double> durationDisplay = end - start;
                         std::cout << "Display time: "<<durationDisplay.count() << endl;
+                        TreeDisplay = durationDisplay.count();
                         break;}
                     case 6:{
                         std::cout << "It took " << durationTree.count() << " to insert all the data into the B+ tree." << std::endl;
@@ -161,11 +171,13 @@ int main() {
                         auto end = std::chrono::high_resolution_clock::now();
                         std::chrono::duration<double> removeDuration = end - start;
                         std::cout << "It took " << removeDuration.count() << " seconds to remove an item.\n";
+                        TreeDisplay = removeDuration.count();
                         auto s = std::chrono::high_resolution_clock::now();
                         tree.search(TimeTrial);
                         auto e = std::chrono::high_resolution_clock::now();
                         std::chrono::duration<double> searchDuration = e - s;
                         std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
+                        TreeDisplay = searchDuration.count();
                         break;
                 }
                     case 8: {
@@ -180,7 +192,8 @@ int main() {
                         std::cout << hashTable.display();
                         auto end = std::chrono::high_resolution_clock::now();
                         std::chrono::duration<double> durationDisplay = end - start;
-                        std::cout << "Display time: "<<durationDisplay.count();
+                        std::cout << "Display time: "<<durationDisplay.count()<<endl;
+                        HashDisplay = durationDisplay.count();
                         break;
                     }
                     case 10: {
@@ -205,9 +218,17 @@ int main() {
                         std::cout << "It took " << searchDuration.count() << " seconds to search for an item.\n";
                         break;
                     }
-                    std::cin >> choice;
                     case 12: {
-
+                        std::cout <<"|---------------------------------------------------------|\n";
+                        std::cout <<"|                        Comparison                       |\n";
+                        std::cout <<"|---------------------------------------------------------|\n";
+                        std::cout <<"|   B+ Tree Index            |       Hash Table Index     |\n";
+                        std::cout <<"|---------------------------------------------------------|\n";
+                        std::cout <<"|Build B+ Tree Index = "<< HashInsert <<"| 7. Build Hash Table Index"<<HashInsert<<"  |\n";
+                        std::cout <<"|3. Search Key in B+ Tree"<<HashSearch<<"    | 8. Search Key in Hash Table"<<HashSearch<<"|\n";
+                        std::cout <<"|5. Display B+ Tree Structure"<<HashDisplay<<"| 9. Display Hash Table"<<HashDisplay<<"      |\n";
+                        std::cout <<"|---------------------------------------------------------|\n";
+                        break;
                     }
 
 
